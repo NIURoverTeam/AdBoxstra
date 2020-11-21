@@ -1,2 +1,3 @@
-# AdBoxstra
-The NIU Ad Boxstra integrated ROS package
+# AdBoxtra
+
+The NIU Ad Boxtra integrated ROS package
