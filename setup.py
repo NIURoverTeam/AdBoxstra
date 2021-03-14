@@ -21,7 +21,8 @@ setup(
     entry_points={
         'console_scripts': [
             'turtle_ad_boxtra = ad_boxtra.turtle_ad_boxtra:main',
-            'conversationalist = ad_boxtra.conversationalist:main'
+            'conversationalist = ad_boxtra.conversationalist:main',
+            'drive_control_serial = ad_boxtra.drive_control_serial:main',
         ],
     },
 )
