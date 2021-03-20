@@ -1,10 +1,13 @@
 import datetime
 import socket
 import rclpy
+import struct
 from rclpy.node import Node
 from std_msgs.msg import String
 from sensor_msgs.msg import Joy
 from serial import Serial
+
+ser = Serial("/dev/ttyACM0", 9600)
 
 class Subscriber(Node):
     def __init__(self):
@@ -16,7 +19,7 @@ class Subscriber(Node):
                 10)
         self.subscription # prevent unused variable warning
 
-    def on_joy_msg(self, msg):
+    def on_joy_msg(self, data):
         leftPower = round(data.axes[1] * 250 / 2)
         rightPower = round(data.axes[4] * 250 / 2)
         leftDir = 0x4C if leftPower >= 0 else 0x6C
@@ -29,7 +32,6 @@ class Subscriber(Node):
                 )
 
 def main(args=None):
-    ser = Serial("/dev/ttyACM0", 9600)
     rclpy.init(args=args)
     sub = Subscriber()
     rclpy.spin(sub)
