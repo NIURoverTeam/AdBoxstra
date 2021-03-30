@@ -1,0 +1,112 @@
+#VRML_SIM R2021a utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation -0.46400991396221897 -0.860294213774268 -0.21116028388711808 1.0012196842199614
+  position -1.0433754975005174 0.7172946058052181 0.8715166458796754
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Floor {
+  size 1 1
+}
+WoodenBox {
+  translation -0.337141 0.05 -0.294844
+  name "wooden box(1)"
+  size 0.1 0.1 0.1
+}
+WoodenBox {
+  translation 0.231115 0.05 -0.196315
+  rotation 0 1 0 0.170173
+  size 0.1 0.1 0.1
+}
+WoodenBox {
+  translation -0.181807 0.05 -0.25632
+  name "wooden box(2)"
+  size 0.1 0.1 0.1
+}
+E-puck {
+  translation -0.0418684 4.44089e-16 0.0997841
+  controller "ros"
+}
+rover_5 {
+  translation 0.426027 0.049998 0.160637
+  rotation 1 0 0 -1.58
+}
+DEF SMALL_BALL Solid {
+  translation 0 0.2 -0.2
+  children [
+    Shape {
+      appearance PBRAppearance {
+        roughness 1
+        metalness 0
+      }
+      geometry DEF BALL_GEOMETRY Sphere {
+        radius 0.05
+        subdivision 2
+      }
+    }
+  ]
+  boundingObject USE BALL_GEOMETRY
+  physics Physics {
+  }
+}
+DEF BIG_BALL Solid {
+  translation -0.19 0.18 -0.09
+  children [
+    DEF BALL_SHAPE Shape {
+      appearance PBRAppearance {
+        roughness 1
+        metalness 0
+      }
+      geometry Sphere {
+        radius 0.1
+      }
+    }
+  ]
+  name "solid(1)"
+  boundingObject USE BALL_SHAPE
+  physics Physics {
+  }
+}
+DEF WALL_1 Solid {
+  translation 0 0.05 -0.5
+  children [
+    DEF WALL_SHAPE Shape {
+      geometry Box {
+        size 1 0.1 0.01
+      }
+    }
+  ]
+  name "solid(2)"
+  boundingObject USE WALL_SHAPE
+}
+DEF WALL_2 Solid {
+  translation -0.5 0.05 0
+  rotation 0 1 0 1.57
+  children [
+    USE WALL_SHAPE
+  ]
+  name "solid(3)"
+  boundingObject USE WALL_SHAPE
+}
+DEF WALL_3 Solid {
+  translation 0 0.05 0.5
+  children [
+    USE WALL_SHAPE
+  ]
+  name "solid(4)"
+  boundingObject USE WALL_SHAPE
+}
+DEF WALL_4 Solid {
+  translation 0.5 0.05 0
+  rotation 0 1 0 1.57
+  children [
+    USE WALL_SHAPE
+  ]
+  name "solid(5)"
+  boundingObject USE WALL_SHAPE
+}
