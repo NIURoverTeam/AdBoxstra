@@ -1,10 +1,20 @@
 #VRML_SIM R2021a utf8
 WorldInfo {
   coordinateSystem "NUE"
+  contactProperties [
+    ContactProperties {
+      material2 "dumbbell"
+      coulombFriction [
+        0
+      ]
+    }
+  ]
 }
 Viewpoint {
-  orientation -0.46400991396221897 -0.860294213774268 -0.21116028388711808 1.0012196842199614
-  position -1.0433754975005174 0.7172946058052181 0.8715166458796754
+  orientation -0.46311269588256515 -0.8608819558878069 -0.21073416652068308 1.0006402324254666
+  position -0.9674773669851109 0.6644451728228582 0.8089703122774099
+  follow "e-puck"
+  followType "None"
 }
 TexturedBackground {
 }
@@ -30,7 +40,7 @@ WoodenBox {
 }
 E-puck {
   translation -0.0418684 4.44089e-16 0.0997841
-  controller "ros"
+  controller "epuck_avoid_collision"
 }
 rover_5 {
   translation 0.426027 0.049998 0.160637
@@ -41,6 +51,11 @@ DEF SMALL_BALL Solid {
   children [
     Shape {
       appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/red_brick_wall.jpg"
+          ]
+        }
         roughness 1
         metalness 0
       }
@@ -59,11 +74,17 @@ DEF BIG_BALL Solid {
   children [
     DEF BALL_SHAPE Shape {
       appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url [
+            "textures/red_brick_wall.jpg"
+          ]
+        }
         roughness 1
         metalness 0
       }
       geometry Sphere {
         radius 0.1
+        subdivision 2
       }
     }
   ]
@@ -76,6 +97,11 @@ DEF WALL_1 Solid {
   translation 0 0.05 -0.5
   children [
     DEF WALL_SHAPE Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 1
+        roughness 0.5
+        metalness 0
+      }
       geometry Box {
         size 1 0.1 0.01
       }
@@ -109,4 +135,49 @@ DEF WALL_4 Solid {
   ]
   name "solid(5)"
   boundingObject USE WALL_SHAPE
+}
+DEF DUMBBELL Solid {
+  translation 0 0.16 0
+  rotation 1 0 0 1.5708
+  children [
+    DEF G0 Group {
+      children [
+        Transform {
+          translation 0 0.05 0
+          children [
+            Shape {
+              geometry Sphere {
+                radius 0.03
+                subdivision 2
+              }
+            }
+          ]
+        }
+        Transform {
+          translation 0 -0.05 0
+          children [
+            Shape {
+              geometry Sphere {
+                radius 0.03
+                subdivision 2
+              }
+            }
+          ]
+        }
+        Shape {
+          geometry Cylinder {
+            height 0.1
+            radius 0.01
+          }
+        }
+      ]
+    }
+  ]
+  name "solid(6)"
+  contactMaterial "dumbbell"
+  boundingObject USE G0
+  physics Physics {
+    density -1
+    mass 2
+  }
 }
