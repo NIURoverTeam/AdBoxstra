@@ -1,1 +1,1 @@
-This is a placeholder file so git will track this `ad_boxtra` directory. Please delete this file when meshes or urdf files are added here for the Ad Boxtra robot.
+I'm not sure if the single quote in the name will cause problems down the line - might want to rename (and update file contents accordingly).
