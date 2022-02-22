@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="Rover_2022">
+  <link
+    name="Chassis">
+    <inertial>
+      <origin
+        xyz="0.313131167113202 0.380492231187585 0.480358534382563"
+        rpy="0 0 0" />
+      <mass
+        value="15.9340372663066" />
+      <inertia
+        ixx="0.147980142342717"
+        ixy="-1.23414553343929E-06"
+        ixz="0.00104137524736032"
+        iyy="0.306412531064966"
+        iyz="-4.98967314024103E-05"
+        izz="0.17535106857417" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Rover_2022/meshes/Chassis.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Rover_2022/meshes/Chassis.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="LeftRocker">
+    <inertial>
+      <origin
+        xyz="3.97288341991254 -0.211079108833358 0.0914651172708996"
+        rpy="0 0 0" />
+      <mass
+        value="10.4423231858737" />
+      <inertia
+        ixx="0.0233312563108311"
+        ixy="0.0015226174670991"
+        ixz="5.62660858809942E-06"
+        iyy="0.02151087819435"
+        iyz="0.000114269869549271"
+        izz="0.0237463432613863" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Rover_2022/meshes/LeftRocker.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Rover_2022/meshes/LeftRocker.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LeftRockerPin"
+    type="fixed">
+    <origin
+      xyz="0.55593 3.379 0.0056886"
+      rpy="-1.5708 0 -1.5708" />
+    <parent
+      link="Chassis" />
+    <child
+      link="LeftRocker" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="LeftBogie">
+    <inertial>
+      <origin
+        xyz="0.100784110255913 0.247602720581972 0.342948600603393"
+        rpy="0 0 0" />
+      <mass
+        value="6.55480070720978" />
+      <inertia
+        ixx="0.00983540305816828"
+        ixy="0.000107791621364935"
+        ixz="-0.00161225835012565"
+        iyy="0.0129344103533824"
+        iyz="3.78751640069458E-05"
+        izz="0.0138002764175486" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Rover_2022/meshes/LeftBogie.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Rover_2022/meshes/LeftBogie.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LeftBogiePin"
+    type="fixed">
+    <origin
+      xyz="3.9049 -0.40277 -0.14909"
+      rpy="1.5708 0 1.8594" />
+    <parent
+      link="LeftRocker" />
+    <child
+      link="LeftBogie" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="RightRocker">
+    <inertial>
+      <origin
+        xyz="0.0547478047012974 0.173596194941609 0.0422385615110392"
+        rpy="0 0 0" />
+      <mass
+        value="10.4266092781284" />
+      <inertia
+        ixx="0.0233399176708107"
+        ixy="-0.00172395718750786"
+        ixz="-1.11043520550417E-06"
+        iyy="0.021492913921891"
+        iyz="0.000113777843084872"
+        izz="0.0237462394082134" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Rover_2022/meshes/RightRocker.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Rover_2022/meshes/RightRocker.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RightRockerPin"
+    type="continuous">
+    <origin
+      xyz="0 -0.647596947235077 0.390998689550471"
+      rpy="-1.5707963267949 0.077561271501082 1.5707963267949" />
+    <parent
+      link="Chassis" />
+    <child
+      link="RightRocker" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="RightBogie">
+    <inertial>
+      <origin
+        xyz="-0.0253762627291257 0.0778176684809702 0.979206447480911"
+        rpy="0 0 0" />
+      <mass
+        value="6.53908679946448" />
+      <inertia
+        ixx="0.0129343065002095"
+        ixy="-0.00011242309398867"
+        ixz="1.85276483484616E-05"
+        iyy="0.00939887808708896"
+        iyz="0.000836981473667687"
+        izz="0.0142274984761484" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Rover_2022/meshes/RightBogie.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://Rover_2022/meshes/RightBogie.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RightBogiePin"
+    type="fixed">
+    <origin
+      xyz="-1.15692026368678 0.248654226929033 0.0317994809851421"
+      rpy="0.153588725632059 1.5707963267949 0" />
+    <parent
+      link="RightRocker" />
+    <child
+      link="RightBogie" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>
