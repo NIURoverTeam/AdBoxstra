@@ -1,0 +1,187 @@
+#VRML_SIM R2022a utf8
+# license: Apache License 2.0
+# license url: http://www.apache.org/licenses/LICENSE-2.0
+# This is a proto file for Webots for the Rover_2022
+# Extracted from: /home/drakeprovost/rover_ws/src/AdBoxtra/urdf/ad_boxtra/Rover_2022.urdf
+
+PROTO Rover_2022 [
+  field  SFVec3f     translation     0 0 0
+  field  SFRotation  rotation        0 0 1 0
+  field  SFString    name            "Rover_2022"  # Is `Robot.name`.
+  field  SFString    controller      "void"        # Is `Robot.controller`.
+  field  MFString    controllerArgs  []            # Is `Robot.controllerArgs`.
+  field  SFString    customData      ""            # Is `Robot.customData`.
+  field  SFBool      supervisor      FALSE         # Is `Robot.supervisor`.
+  field  SFBool      synchronization TRUE          # Is `Robot.synchronization`.
+  field  SFBool      selfCollision   FALSE         # Is `Robot.selfCollision`.
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    controller IS controller
+    controllerArgs IS controllerArgs
+    customData IS customData
+    supervisor IS supervisor
+    synchronization IS synchronization
+    selfCollision IS selfCollision
+    children [
+      Shape {
+        appearance DEF Chassis_material PBRAppearance {
+          baseColor 0.752941 0.752941 0.752941
+          transparency 0.000000
+          roughness 1.000000
+          metalness 0
+          emissiveColor 0.000000 0.000000 0.000000
+        }
+        geometry DEF Chassis Mesh {
+          url "/home/drakeprovost/rover_ws/src/AdBoxtra/urdf/ad_boxtra/meshes/Chassis.STL"
+        }
+      }
+      Solid {
+        translation 0.555930 3.379000 0.005689
+        rotation -0.577350 0.577352 -0.577350 2.094399
+        children [
+          Shape {
+            appearance DEF LeftRocker_material PBRAppearance {
+              baseColor 0.752941 0.752941 0.752941
+              transparency 0.000000
+              roughness 1.000000
+              metalness 0
+              emissiveColor 0.000000 0.000000 0.000000
+            }
+            geometry DEF LeftRocker Mesh {
+              url "/home/drakeprovost/rover_ws/src/AdBoxtra/urdf/ad_boxtra/meshes/LeftRocker.STL"
+            }
+          }
+          Solid {
+            translation 3.904900 -0.402770 -0.149090
+            rotation 0.466690 0.625381 0.625379 2.268302
+            children [
+              Shape {
+                appearance DEF LeftBogie_material PBRAppearance {
+                  baseColor 0.752941 0.752941 0.752941
+                  transparency 0.000000
+                  roughness 1.000000
+                  metalness 0
+                  emissiveColor 0.000000 0.000000 0.000000
+                }
+                geometry DEF LeftBogie Mesh {
+                  url "/home/drakeprovost/rover_ws/src/AdBoxtra/urdf/ad_boxtra/meshes/LeftBogie.STL"
+                }
+              }
+            ]
+            name "LeftBogie"
+            boundingObject USE LeftBogie
+            physics Physics {
+              density -1
+              mass 6.554801
+              centerOfMass [ 0.100784 0.247603 0.342949 ]
+              inertiaMatrix [
+                9.835403e-03 1.293441e-02 1.380028e-02
+                1.077916e-04 -1.612258e-03 3.787516e-05
+              ]
+            }
+          }
+        ]
+        name "LeftRocker"
+        boundingObject USE LeftRocker
+        physics Physics {
+          density -1
+          mass 10.442323
+          centerOfMass [ 3.972883 -0.211079 0.091465 ]
+          inertiaMatrix [
+            2.333126e-02 2.151088e-02 2.374634e-02
+            1.522617e-03 5.626609e-06 1.142699e-04
+          ]
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis -1.000000 -0.000000 -0.000000
+          anchor 0.000000 -0.647597 0.390999
+          dampingConstant 0.0
+          staticFriction 0.0
+        }
+        device [
+          RotationalMotor {
+            name "RightRockerPin"
+            maxTorque 10000
+          }
+          PositionSensor {
+            name "RightRockerPin_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation 0.000000 -0.647597 0.390999
+          rotation -0.591708 -0.547506 0.591708 2.139739
+          children [
+            Shape {
+              appearance DEF RightRocker_material PBRAppearance {
+                baseColor 0.752941 0.752941 0.752941
+                transparency 0.000000
+                roughness 1.000000
+                metalness 0
+                emissiveColor 0.000000 0.000000 0.000000
+              }
+              geometry DEF RightRocker Mesh {
+                url "/home/drakeprovost/rover_ws/src/AdBoxtra/urdf/ad_boxtra/meshes/RightRocker.STL"
+              }
+            }
+            Solid {
+              translation -1.156920 0.248654 0.031799
+              rotation 0.076494 0.994131 -0.076494 1.576682
+              children [
+                Shape {
+                  appearance DEF RightBogie_material PBRAppearance {
+                    baseColor 0.752941 0.752941 0.752941
+                    transparency 0.000000
+                    roughness 1.000000
+                    metalness 0
+                    emissiveColor 0.000000 0.000000 0.000000
+                  }
+                  geometry DEF RightBogie Mesh {
+                    url "/home/drakeprovost/rover_ws/src/AdBoxtra/urdf/ad_boxtra/meshes/RightBogie.STL"
+                  }
+                }
+              ]
+              name "RightBogie"
+              boundingObject USE RightBogie
+              physics Physics {
+                density -1
+                mass 6.539087
+                centerOfMass [ -0.025376 0.077818 0.979206 ]
+                inertiaMatrix [
+                  1.293431e-02 9.398878e-03 1.422750e-02
+                  -1.124231e-04 1.852765e-05 8.369815e-04
+                ]
+              }
+            }
+          ]
+          name "RightRocker"
+          boundingObject USE RightRocker
+          physics Physics {
+            density -1
+            mass 10.426609
+            centerOfMass [ 0.054748 0.173596 0.042239 ]
+            inertiaMatrix [
+              2.333992e-02 2.149291e-02 2.374624e-02
+              -1.723957e-03 -1.110435e-06 1.137778e-04
+            ]
+          }
+        }
+      }
+    ]
+    name IS name
+    boundingObject USE Chassis
+    physics Physics {
+      density -1
+      mass 15.934037
+      centerOfMass [ 0.313131 0.380492 0.480359 ]
+      inertiaMatrix [
+        1.479801e-01 3.064125e-01 1.753511e-01
+        -1.234146e-06 1.041375e-03 -4.989673e-05
+      ]
+    }
+  }
+}

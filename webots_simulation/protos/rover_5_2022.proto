@@ -1,0 +1,253 @@
+#VRML_SIM R2022a utf8
+# license: Apache License 2.0
+# license url: http://www.apache.org/licenses/LICENSE-2.0
+# This is a proto file for Webots for the rover_5_2022
+# Extracted from: /home/drakeprovost/rover_ws/src/AdBoxtra/urdf/rover_5/rover_5.urdf
+
+PROTO rover_5_2022 [
+  field  SFVec3f     translation     0 0 0
+  field  SFRotation  rotation        0 0 1 0
+  field  SFString    name            "rover_5_2022"  # Is `Robot.name`.
+  field  SFString    controller      "void"          # Is `Robot.controller`.
+  field  MFString    controllerArgs  []              # Is `Robot.controllerArgs`.
+  field  SFString    customData      ""              # Is `Robot.customData`.
+  field  SFBool      supervisor      FALSE           # Is `Robot.supervisor`.
+  field  SFBool      synchronization TRUE            # Is `Robot.synchronization`.
+  field  SFBool      selfCollision   FALSE           # Is `Robot.selfCollision`.
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    controller IS controller
+    controllerArgs IS controllerArgs
+    customData IS customData
+    supervisor IS supervisor
+    synchronization IS synchronization
+    selfCollision IS selfCollision
+    children [
+      Shape {
+        appearance DEF white PBRAppearance {
+          baseColor 0.500000 0.500000 0.500000
+          transparency 0.000000
+          roughness 1.000000
+          metalness 0
+          emissiveColor 0.000000 0.000000 0.000000
+        }
+        geometry DEF base_link Mesh {
+          url "/home/drakeprovost/rover_ws/src/AdBoxtra/urdf/rover_5/meshes/base_link.stl"
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0.000000 1.000000 0.000000
+          anchor -0.354200 0.000000 0.000000
+          dampingConstant 0.0
+          staticFriction 0.0
+        }
+        device [
+          RotationalMotor {
+            name "base_to_wheel_1"
+            maxTorque 10000
+          }
+          PositionSensor {
+            name "base_to_wheel_1_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation -0.354200 0.000000 0.000000
+          rotation 0.000000 0.000000 1.000000 0.000000
+          children [
+            Transform {
+              translation 0.354200 0.000000 0.000000
+              rotation 0.000000 0.000000 1.000000 0.000000
+              children [
+                Shape {
+                  appearance USE white
+                  geometry DEF wheel_scaled Mesh {
+                    url "/home/drakeprovost/rover_ws/src/AdBoxtra/urdf/rover_5/meshes/wheel_scaled.stl"
+                  }
+                }
+              ]
+            }
+          ]
+          name "wheel_1"
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0.000000 1.000000 0.000000
+          anchor -0.180000 0.000000 0.000000
+          dampingConstant 0.0
+          staticFriction 0.0
+        }
+        device [
+          RotationalMotor {
+            name "base_to_wheel_2"
+            maxTorque 10000
+          }
+          PositionSensor {
+            name "base_to_wheel_2_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation -0.180000 0.000000 0.000000
+          rotation 0.000000 0.000000 1.000000 0.000000
+          children [
+            Transform {
+              translation 0.354200 0.000000 0.000000
+              rotation 0.000000 0.000000 1.000000 0.000000
+              children [
+                Shape {
+                  appearance USE white
+                  geometry USE wheel_scaled
+                }
+              ]
+            }
+          ]
+          name "wheel_2"
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0.000000 1.000000 0.000000
+          anchor -0.354200 0.090000 0.000000
+          dampingConstant 0.0
+          staticFriction 0.0
+        }
+        device [
+          RotationalMotor {
+            name "base_to_wheel_3"
+            maxTorque 10000
+          }
+          PositionSensor {
+            name "base_to_wheel_3_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation -0.354200 0.090000 0.000000
+          rotation 0.000000 0.000000 1.000000 0.000000
+          children [
+            Transform {
+              translation 0.354200 0.000000 0.000000
+              rotation 1.000000 0.000000 0.000000 3.141590
+              children [
+                Shape {
+                  appearance USE white
+                  geometry USE wheel_scaled
+                }
+              ]
+            }
+          ]
+          name "wheel_3"
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0.000000 1.000000 0.000000
+          anchor -0.180000 0.090000 0.000000
+          dampingConstant 0.0
+          staticFriction 0.0
+        }
+        device [
+          RotationalMotor {
+            name "base_to_wheel_4"
+            maxTorque 10000
+          }
+          PositionSensor {
+            name "base_to_wheel_4_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation -0.180000 0.090000 0.000000
+          rotation 0.000000 0.000000 1.000000 0.000000
+          children [
+            Transform {
+              translation 0.354200 0.000000 0.000000
+              rotation 1.000000 0.000000 0.000000 3.141590
+              children [
+                Shape {
+                  appearance USE white
+                  geometry USE wheel_scaled
+                }
+              ]
+            }
+          ]
+          name "wheel_4"
+        }
+      }
+      Solid {
+        translation -0.353000 0.094400 0.058000
+        rotation 0.000000 0.000000 1.000000 0.000000
+        children [
+          Shape {
+            appearance DEF acrylic PBRAppearance {
+              baseColor 0.500000 0.500000 0.500000
+              transparency 0.100000
+              roughness 1.000000
+              metalness 0
+              emissiveColor 0.000000 0.000000 0.000000
+            }
+            geometry DEF rack Mesh {
+              url "/home/drakeprovost/rover_ws/src/AdBoxtra/urdf/rover_5/meshes/rack.stl"
+            }
+          }
+          Solid {
+            translation 0.040000 -0.005000 0.075000
+            rotation 0.577351 -0.577350 -0.577351 2.094394
+            children [
+              Shape {
+                appearance DEF gray PBRAppearance {
+                  baseColor 0.500000 0.500000 0.500000
+                  transparency 0.000000
+                  roughness 1.000000
+                  metalness 0
+                  emissiveColor 0.000000 0.000000 0.000000
+                }
+                geometry DEF Intel_RealSense_Depth_Camera_D435 Mesh {
+                  url "/home/drakeprovost/rover_ws/src/AdBoxtra/urdf/rover_5/meshes/Intel_RealSense_Depth_Camera_D435.STL"
+                }
+              }
+            ]
+            name "intel_realsense"
+          }
+          Solid {
+            translation 0.074500 -0.031000 0.069000
+            rotation 0.000000 0.000000 1.000000 0.000000
+            children [
+              Shape {
+                appearance DEF black PBRAppearance {
+                  baseColor 0.500000 0.500000 0.500000
+                  transparency 0.000000
+                  roughness 1.000000
+                  metalness 0
+                  emissiveColor 0.000000 0.000000 0.000000
+                }
+                geometry Cylinder {
+                  radius 0.0251
+                  height 0.02
+                }
+              }
+            ]
+            name "usb_gps"
+          }
+        ]
+        name "top_rack"
+      }
+      Solid {
+        translation -0.265000 0.100000 0.040000
+        rotation 0.000000 0.000000 1.000000 0.000000
+        children [
+          Shape {
+            appearance USE black
+            geometry Box {
+               size 0.038 0.038 0.014
+            }
+          }
+        ]
+        name "imu_link"
+      }
+    ]
+    name IS name
+  }
+}
