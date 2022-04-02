@@ -2,52 +2,87 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.3027039771423028 0.13351298819997529 0.9436866981176248 2.3527642685556716
-  position 1.2779910052283676 -1.3971806952738173 1.382074191712643
+  orientation -0.363341953388911 0.1983886138917014 0.9102881866670905 2.2190674493687155
+  position 1.297354647470321 -1.6489296850786412 1.943724894802239
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
-RectangleArena {
-  floorTileSize 0.25 0.25
-  wallHeight 0.05
+Floor {
+  size 1 1
+  tileSize 0.25 0.25
+}
+DEF WALL_1 Solid {
+  translation 0 0.5 0.025
+  children [
+    DEF WALL_SHAPE Shape {
+      appearance PBRAppearance {
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 1 0.02 0.1
+      }
+    }
+  ]
+  name "wall1"
+  boundingObject USE WALL_SHAPE
+}
+DEF WALL_2 Solid {
+  translation 0.5 0 0.025
+  rotation 0 0 1 1.5708
+  children [
+    USE WALL_SHAPE
+  ]
+  name "wall2"
+  boundingObject USE WALL_SHAPE
+}
+DEF WALL_3 Solid {
+  translation 0 -0.5 0.025
+  children [
+    USE WALL_SHAPE
+  ]
+  name "wall3"
+  boundingObject USE WALL_SHAPE
+}
+DEF WALL_4 Solid {
+  translation -0.5 0 0.025
+  rotation 0 0 1 1.5708
+  children [
+    USE WALL_SHAPE
+  ]
+  name "wall4"
+  boundingObject USE WALL_SHAPE
 }
 Robot {
   children [
-    DistanceSensor {
+    DEF DS_RIGHT DistanceSensor {
       translation 0.1 -0.03 0.0125
       rotation 0 0 1 -0.3
       children [
-        Shape {
+        DEF DS_SHAPE Shape {
           appearance PBRAppearance {
             baseColor 0 0 1
             roughness 1
             metalness 0
           }
-          geometry DEF DISTANCE_SENSOR Box {
+          geometry Box {
             size 0.01 0.01 0.01
           }
         }
       ]
       name "ds_right"
     }
-    DistanceSensor {
+    DEF DS_LEFT DistanceSensor {
       translation 0.1 0.03 0.0125
       rotation 0 0 1 0.3
       children [
-        Shape {
-          appearance PBRAppearance {
-            baseColor 0 0 1
-            roughness 1
-            metalness 0
-          }
-          geometry USE DISTANCE_SENSOR
-        }
+        USE DS_SHAPE
       ]
       name "ds_left"
     }
-    HingeJoint {
+    DEF WHEEL1 HingeJoint {
       jointParameters HingeJointParameters {
         axis 0 1 0
         anchor 0.05 0.06 0
@@ -57,9 +92,9 @@ Robot {
           name "wheel1"
         }
       ]
-      endPoint DEF WHEEL1 Solid {
+      endPoint Solid {
         translation 0.05 0.06 0
-        rotation 1 0 0 1.5708
+        rotation 1 -6.672880693987591e-16 3.92522393763976e-17 1.570799999999999
         children [
           DEF WHEEL Shape {
             appearance PBRAppearance {
@@ -79,19 +114,19 @@ Robot {
         }
       }
     }
-    HingeJoint {
+    DEF WHEEL2 HingeJoint {
       jointParameters HingeJointParameters {
         axis 0 1 0
-        anchor 0.05 0.06 0
+        anchor 0.05 -0.06 0
       }
       device [
         RotationalMotor {
           name "wheel2"
         }
       ]
-      endPoint DEF WHEEL2 Solid {
-        translation 0.05 -0.06 0
-        rotation 1 0 0 1.5708
+      endPoint Solid {
+        translation 0.05 -0.05999999999999989 0
+        rotation 1 -1.7781079963482716e-22 -4.679231569337557e-23 1.5708
         children [
           USE WHEEL
         ]
@@ -99,19 +134,19 @@ Robot {
         physics USE WHEEL_PH
       }
     }
-    HingeJoint {
+    DEF WHEEL3 HingeJoint {
       jointParameters HingeJointParameters {
         axis 0 1 0
-        anchor 0.05 0.06 0
+        anchor -0.05 0.06 0
       }
       device [
         RotationalMotor {
           name "wheel3"
         }
       ]
-      endPoint DEF WHEEL3 Solid {
-        translation -0.05 0.06 0
-        rotation 1 0 0 1.5708
+      endPoint Solid {
+        translation -0.04999999999999993 0.06 -3.308722450212111e-24
+        rotation 1 -3.743385255470045e-23 0 1.5707999999999998
         children [
           USE WHEEL
         ]
@@ -120,19 +155,19 @@ Robot {
         physics USE WHEEL_PH
       }
     }
-    HingeJoint {
+    DEF WHEEL4 HingeJoint {
       jointParameters HingeJointParameters {
         axis 0 1 0
-        anchor 0.05 0.06 0
+        anchor -0.05 -0.06 0
       }
       device [
         RotationalMotor {
           name "wheel4"
         }
       ]
-      endPoint DEF WHEEL4 Solid {
-        translation -0.05 -0.06 0
-        rotation 1 0 0 1.5708
+      endPoint Solid {
+        translation -0.050000000000000044 -0.05999999999999989 -3.308722450212111e-24
+        rotation 1 5.615077883205069e-23 5.615077883205069e-23 1.5707999999999998
         children [
           USE WHEEL
         ]
@@ -155,4 +190,9 @@ Robot {
   boundingObject USE BODY
   physics Physics {
   }
+  controller "four_wheeled_collision_avoidance"
+}
+WoodenBox {
+  translation 0.305803 0.04072 0.05
+  size 0.1 0.1 0.1
 }
