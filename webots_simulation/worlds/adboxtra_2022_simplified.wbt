@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.363341953388911 0.1983886138917014 0.9102881866670905 2.2190674493687155
-  position 1.297354647470321 -1.6489296850786412 1.943724894802239
+  orientation -0.31508697895448184 0.1579881469503144 0.9358204641471268 2.264140146038026
+  position 1.5178343211345622 -1.7156802904614972 1.7098476366592
 }
 TexturedBackground {
 }
@@ -56,6 +56,7 @@ DEF WALL_4 Solid {
   boundingObject USE WALL_SHAPE
 }
 Robot {
+  translation -0.311166 0.326803 0
   children [
     DEF DS_RIGHT DistanceSensor {
       translation 0.1 -0.03 0.0125
@@ -191,6 +192,8 @@ Robot {
   physics Physics {
   }
   controller "four_wheeled_collision_avoidance"
+}
+AdBoxtraSimplified {
 }
 WoodenBox {
   translation 0.305803 0.04072 0.05
