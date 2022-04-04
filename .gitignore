@@ -25,6 +25,9 @@ devel_isolated/
 *.dox
 *.wikidoc
 
+# Webots hidden files
+webots_simulation/*/.*
+
 # eclipse stuff
 .project
 .cproject
