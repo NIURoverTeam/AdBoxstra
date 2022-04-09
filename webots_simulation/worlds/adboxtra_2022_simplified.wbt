@@ -2,19 +2,19 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.31508697895448184 0.1579881469503144 0.9358204641471268 2.264140146038026
-  position 1.5178343211345622 -1.7156802904614972 1.7098476366592
+  orientation -0.2976860149853844 0.1260004482925266 0.9463122758963892 2.3796549789967663
+  position 4.0559232242038 -4.0499559534410094 4.435135359594327
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
 Floor {
-  size 1 1
-  tileSize 0.25 0.25
+  size 3 3
+  tileSize 1 1
 }
 DEF WALL_1 Solid {
-  translation 0 0.5 0.025
+  translation 0 1.5 0.25
   children [
     DEF WALL_SHAPE Shape {
       appearance PBRAppearance {
@@ -22,7 +22,7 @@ DEF WALL_1 Solid {
         metalness 0
       }
       geometry Box {
-        size 1 0.02 0.1
+        size 3 0.02 0.5
       }
     }
   ]
@@ -30,7 +30,7 @@ DEF WALL_1 Solid {
   boundingObject USE WALL_SHAPE
 }
 DEF WALL_2 Solid {
-  translation 0.5 0 0.025
+  translation 1.5 0 0.25
   rotation 0 0 1 1.5708
   children [
     USE WALL_SHAPE
@@ -39,7 +39,7 @@ DEF WALL_2 Solid {
   boundingObject USE WALL_SHAPE
 }
 DEF WALL_3 Solid {
-  translation 0 -0.5 0.025
+  translation 0 -1.5 0.25
   children [
     USE WALL_SHAPE
   ]
@@ -47,7 +47,7 @@ DEF WALL_3 Solid {
   boundingObject USE WALL_SHAPE
 }
 DEF WALL_4 Solid {
-  translation -0.5 0 0.025
+  translation -1.5 0 0.25
   rotation 0 0 1 1.5708
   children [
     USE WALL_SHAPE
@@ -56,10 +56,159 @@ DEF WALL_4 Solid {
   boundingObject USE WALL_SHAPE
 }
 Robot {
-  translation -0.311166 0.326803 0
+  translation -0.311166 0.326803 0.41
   children [
+    DEF ARM_AXIS1_TRANSL SliderJoint {
+      jointParameters JointParameters {
+      }
+      device [
+        LinearMotor {
+        }
+      ]
+      endPoint Solid {
+        translation 0 0 0.225
+        children [
+          DEF ARM_AXIS1_SHAPE Shape {
+            appearance PBRAppearance {
+              baseColor 1 0.5 0
+              roughness 1
+              metalness 0
+            }
+            geometry Box {
+              size 0.05 0.05 0.3
+            }
+          }
+          DEF ARM_AXIS2_ROT HingeJoint {
+            jointParameters HingeJointParameters {
+            }
+            device [
+              RotationalMotor {
+              }
+            ]
+            endPoint Solid {
+              translation 0.025 0 0.13
+              children [
+                DEF ARM_HINGE_SHAPE Shape {
+                  appearance PBRAppearance {
+                    baseColor 0 1 0
+                    roughness 1
+                    metalness 0
+                  }
+                  geometry Sphere {
+                    radius 0.038
+                  }
+                }
+                DEF ARM_AXIS3_TRANSL SliderJoint {
+                  jointParameters JointParameters {
+                  }
+                  device [
+                    LinearMotor {
+                    }
+                  ]
+                  endPoint Solid {
+                    translation 0.075 0 0
+                    children [
+                      DEF ARM_AXIS3_SHAPE Shape {
+                        appearance PBRAppearance {
+                          baseColor 1 0.5 0
+                          roughness 1
+                          metalness 0
+                        }
+                        geometry Box {
+                          size 0.15 0.05 0.05
+                        }
+                      }
+                      DEF ARM_AXIS4_ROT HingeJoint {
+                        jointParameters HingeJointParameters {
+                        }
+                        device [
+                          RotationalMotor {
+                          }
+                        ]
+                        endPoint Solid {
+                          translation 0.075 0 0
+                          children [
+                            USE ARM_HINGE_SHAPE
+                            DEF ARM_LINK1 Solid {
+                              translation 0.05 0 0
+                              children [
+                                DEF ARM_LINK1_SHAPE Shape {
+                                  appearance PBRAppearance {
+                                    baseColor 1 1 0
+                                    roughness 1
+                                    metalness 0
+                                  }
+                                  geometry Box {
+                                    size 0.1 0.05 0.05
+                                  }
+                                }
+                                DEF ARM_AXIS5_ROT HingeJoint {
+                                  jointParameters HingeJointParameters {
+                                  }
+                                  device [
+                                    RotationalMotor {
+                                    }
+                                  ]
+                                  endPoint Solid {
+                                    translation 0.05 0 0
+                                    children [
+                                      USE ARM_HINGE_SHAPE
+                                      DEF ARM_LINK2 Solid {
+                                        translation 0.05 0 0
+                                        children [
+                                          DEF ARM_LINK2_SHAPE Shape {
+                                            appearance PBRAppearance {
+                                              baseColor 1 1 0
+                                              roughness 1
+                                              metalness 0
+                                            }
+                                            geometry Box {
+                                              size 0.1 0.05 0.05
+                                            }
+                                          }
+                                        ]
+                                        boundingObject USE ARM_LINK2_SHAPE
+                                        physics Physics {
+                                        }
+                                      }
+                                    ]
+                                    boundingObject USE ARM_HINGE_SHAPE
+                                    physics Physics {
+                                    }
+                                  }
+                                }
+                              ]
+                              boundingObject USE ARM_LINK1_SHAPE
+                              physics Physics {
+                              }
+                            }
+                          ]
+                          boundingObject USE ARM_HINGE_SHAPE
+                          physics Physics {
+                          }
+                        }
+                      }
+                    ]
+                    boundingObject USE ARM_AXIS3_SHAPE
+                    physics Physics {
+                    }
+                  }
+                }
+              ]
+              boundingObject USE ARM_HINGE_SHAPE
+              physics Physics {
+              }
+            }
+          }
+        ]
+        name "solid(2)"
+        boundingObject USE ARM_AXIS1_SHAPE
+        physics Physics {
+        }
+      }
+    }
     DEF DS_RIGHT DistanceSensor {
-      translation 0.1 -0.03 0.0125
+      translation 0.305 -0.23 0
       rotation 0 0 1 -0.3
       children [
         DEF DS_SHAPE Shape {
@@ -69,111 +218,167 @@ Robot {
             metalness 0
           }
           geometry Box {
-            size 0.01 0.01 0.01
+            size 0.03 0.03 0.03
           }
         }
       ]
       name "ds_right"
+      lookupTable [
+        0 0 0
+        0.4 1000 0
+      ]
     }
     DEF DS_LEFT DistanceSensor {
-      translation 0.1 0.03 0.0125
+      translation 0.305 0.23 0
       rotation 0 0 1 0.3
       children [
         USE DS_SHAPE
       ]
       name "ds_left"
+      lookupTable [
+        0 0 0
+        0.4 1000 0
+      ]
     }
-    DEF WHEEL1 HingeJoint {
+    DEF LEFT_WHEEL1 HingeJoint {
       jointParameters HingeJointParameters {
         axis 0 1 0
-        anchor 0.05 0.06 0
+        anchor 0.48 0.33 -0.3
       }
       device [
         RotationalMotor {
-          name "wheel1"
+          name "left_wheel1"
+          maxTorque 100
         }
       ]
       endPoint Solid {
-        translation 0.05 0.06 0
-        rotation 1 -6.672880693987591e-16 3.92522393763976e-17 1.570799999999999
+        translation 0.48 0.33 -0.3
+        rotation 1 -7.065403087751576e-16 -1.5700895750559056e-16 1.5707999999999966
         children [
-          DEF WHEEL Shape {
+          DEF WHEEL_SHAPE Shape {
             appearance PBRAppearance {
               baseColor 0 1 0
               roughness 1
               metalness 0
             }
             geometry Cylinder {
-              height 0.02
-              radius 0.04
+              height 0.1
+              radius 0.1
             }
           }
         ]
-        name "solid(1)"
-        boundingObject USE WHEEL
+        boundingObject USE WHEEL_SHAPE
         physics DEF WHEEL_PH Physics {
         }
       }
     }
-    DEF WHEEL2 HingeJoint {
+    DEF RIGHT_WHEEL1 HingeJoint {
       jointParameters HingeJointParameters {
         axis 0 1 0
-        anchor 0.05 -0.06 0
+        anchor 0.48 -0.33 -0.3
       }
       device [
         RotationalMotor {
-          name "wheel2"
+          name "right_wheel1"
+          maxTorque 100
         }
       ]
       endPoint Solid {
-        translation 0.05 -0.05999999999999989 0
-        rotation 1 -1.7781079963482716e-22 -4.679231569337557e-23 1.5708
+        translation 0.48 -0.33 -0.3
+        rotation 1 -1.5700895750559049e-16 -7.850447875279524e-17 1.5707999999999982
         children [
-          USE WHEEL
+          USE WHEEL_SHAPE
         ]
-        boundingObject USE WHEEL
+        name "solid(1)"
+        boundingObject USE WHEEL_SHAPE
         physics USE WHEEL_PH
       }
     }
-    DEF WHEEL3 HingeJoint {
+    DEF LEFT_WHEEL2 HingeJoint {
       jointParameters HingeJointParameters {
         axis 0 1 0
-        anchor -0.05 0.06 0
+        anchor 0 0.43 -0.3
       }
       device [
         RotationalMotor {
-          name "wheel3"
+          name "left_wheel2"
+          maxTorque 100
         }
       ]
       endPoint Solid {
-        translation -0.04999999999999993 0.06 -3.308722450212111e-24
-        rotation 1 -3.743385255470045e-23 0 1.5707999999999998
+        translation 0 0.43 -0.3
+        rotation 1 7.850447875279514e-17 4.710268725167708e-16 1.5708000000000004
         children [
-          USE WHEEL
+          USE WHEEL_SHAPE
+        ]
+        name "solid(2)"
+        boundingObject USE WHEEL_SHAPE
+        physics USE WHEEL_PH
+      }
+    }
+    DEF RIGHT_WHEEL2 HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0 -0.43 -0.3
+      }
+      device [
+        RotationalMotor {
+          name "right_wheel2"
+          maxTorque 100
+        }
+      ]
+      endPoint Solid {
+        translation 0 -0.43 -0.3
+        rotation 1 -4.710268725167713e-16 -3.9252239376397603e-16 1.570799999999999
+        children [
+          USE WHEEL_SHAPE
         ]
         name "solid(4)"
-        boundingObject USE WHEEL
+        boundingObject USE WHEEL_SHAPE
         physics USE WHEEL_PH
       }
     }
-    DEF WHEEL4 HingeJoint {
+    DEF LEFT_WHEEL3 HingeJoint {
       jointParameters HingeJointParameters {
         axis 0 1 0
-        anchor -0.05 -0.06 0
+        anchor -0.48 0.33 -0.3
       }
       device [
         RotationalMotor {
-          name "wheel4"
+          name "left_wheel3"
+          maxTorque 100
         }
       ]
       endPoint Solid {
-        translation -0.050000000000000044 -0.05999999999999989 -3.308722450212111e-24
-        rotation 1 5.615077883205069e-23 5.615077883205069e-23 1.5707999999999998
+        translation -0.48 0.33 -0.3
+        rotation 1 7.850447875279514e-17 4.710268725167708e-16 1.5708000000000004
         children [
-          USE WHEEL
+          USE WHEEL_SHAPE
         ]
-        name "solid(3)"
-        boundingObject USE WHEEL
+        name "solid(5)"
+        boundingObject USE WHEEL_SHAPE
+        physics USE WHEEL_PH
+      }
+    }
+    DEF RIGHT_WHEEL3 HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor -0.48 -0.33 -0.3
+      }
+      device [
+        RotationalMotor {
+          name "right_wheel3"
+          maxTorque 100
+        }
+      ]
+      endPoint Solid {
+        translation -0.48 -0.33 -0.3
+        rotation 1 -4.710268725167713e-16 -3.9252239376397603e-16 1.570799999999999
+        children [
+          USE WHEEL_SHAPE
+        ]
+        name "solid(6)"
+        boundingObject USE WHEEL_SHAPE
         physics USE WHEEL_PH
       }
     }
@@ -184,7 +389,7 @@ Robot {
         metalness 0
       }
       geometry Box {
-        size 0.2 0.1 0.05
+        size 0.61 0.46 0.15
       }
     }
   ]
@@ -193,9 +398,7 @@ Robot {
   }
   controller "four_wheeled_collision_avoidance"
 }
-AdBoxtraSimplified {
-}
 WoodenBox {
-  translation 0.305803 0.04072 0.05
-  size 0.1 0.1 0.1
+  translation 0.915431 0.747779 0.25
+  size 0.5 0.5 0.5
 }
