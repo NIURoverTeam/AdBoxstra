@@ -17,7 +17,9 @@ for i in range(len(dsNames)):
     ds.append(robot.getDevice(dsNames[i])) # initialize distance sensors
     ds[i].enable(timestep)
 wheels = []
-wheelsNames = ['wheel1', 'wheel2', 'wheel3', 'wheel4']
+wheelsNames = ['left_wheel1', 'right_wheel1',
+               'left_wheel2', 'right_wheel2',
+               'left_wheel3', 'right_wheel3']
 for i in range(len(wheelsNames)):
     wheels.append(robot.getDevice(wheelsNames[i])) # initialize motors
     wheels[i].setPosition(float('inf'))
@@ -32,11 +34,19 @@ rightSpeed = baseSpeed
 # - perform simulation steps until Webots is stopping the controller
 while robot.step(timestep) != -1:
     # determine the new speeds based on sensor feedback
-    if avoidObstacleCounter > 0:
-        # object detected, so turn
+    if avoidObstacleCounter > 90:
+        # if obstacle just detected, back up a bit so there's
+        # room to turn
         avoidObstacleCounter -= 1
-        leftSpeed = 1 * baseSpeed
+        leftSpeed = -1 * baseSpeed
         rightSpeed = -1 * baseSpeed
+        print("backing up...", avoidObstacleCounter)
+    elif avoidObstacleCounter > 0:
+        # after backing up, turn
+        avoidObstacleCounter -= 1
+        turningSpeedBoost = 2.0  # to overcome static friction
+        leftSpeed = 1 * baseSpeed * turningSpeedBoost
+        rightSpeed = -1 * baseSpeed * turningSpeedBoost
         print("turn...", avoidObstacleCounter)
     elif avoidObstacleCounter <= 0:
         leftSpeed = baseSpeed
@@ -55,5 +65,7 @@ while robot.step(timestep) != -1:
     wheels[1].setVelocity(rightSpeed)
     wheels[2].setVelocity(leftSpeed)
     wheels[3].setVelocity(rightSpeed)
+    wheels[4].setVelocity(leftSpeed)
+    wheels[5].setVelocity(rightSpeed)
 
 # Enter here exit cleanup code.

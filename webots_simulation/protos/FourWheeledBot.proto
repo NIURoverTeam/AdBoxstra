@@ -1,6 +1,7 @@
-PROTO AdBoxtraSimplified [
+PROTO FourWheeledBot [
   field SFVec3f    translation  0 0 0
   field SFRotation rotation     0 0 1 0
+  field SFString   name         "robot"
   field SFFloat    bodyMass     1
   field SFString   controller   "four_wheeled_collision_avoidance"
 ]
@@ -139,6 +140,7 @@ PROTO AdBoxtraSimplified [
         }
       }
     ]
+    name IS name
     boundingObject USE BODY
     physics Physics {
       density -1

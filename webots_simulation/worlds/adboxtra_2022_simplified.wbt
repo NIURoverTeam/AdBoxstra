@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.2976860149853844 0.1260004482925266 0.9463122758963892 2.3796549789967663
-  position 4.0559232242038 -4.0499559534410094 4.435135359594327
+  orientation -0.283835014196386 0.11514889016200848 0.951934040682754 2.404513582122462
+  position 4.255191228299963 -4.027679979748102 4.278412571557161
 }
 TexturedBackground {
 }
@@ -87,6 +87,7 @@ Robot {
             ]
             endPoint Solid {
               translation 0.025 0 0.13
+              rotation 1 0 0 0
               children [
                 DEF ARM_HINGE_SHAPE Shape {
                   appearance PBRAppearance {
@@ -127,6 +128,7 @@ Robot {
                         ]
                         endPoint Solid {
                           translation 0.075 0 0
+                          rotation 1 0 0 0
                           children [
                             USE ARM_HINGE_SHAPE
                             DEF ARM_LINK1 Solid {
@@ -151,6 +153,7 @@ Robot {
                                   ]
                                   endPoint Solid {
                                     translation 0.05 0 0
+                                    rotation 1 0 0 0
                                     children [
                                       USE ARM_HINGE_SHAPE
                                       DEF ARM_LINK2 Solid {
@@ -311,7 +314,7 @@ Robot {
         children [
           USE WHEEL_SHAPE
         ]
-        name "solid(2)"
+        name "solid(7)"
         boundingObject USE WHEEL_SHAPE
         physics USE WHEEL_PH
       }
@@ -396,7 +399,7 @@ Robot {
   boundingObject USE BODY
   physics Physics {
   }
-  controller "four_wheeled_collision_avoidance"
+  controller "six_wheeled_collision_avoidance"
 }
 WoodenBox {
   translation 0.915431 0.747779 0.25
