@@ -2,8 +2,8 @@
 WorldInfo {
 }
 Viewpoint {
-  orientation -0.283835014196386 0.11514889016200848 0.951934040682754 2.404513582122462
-  position 4.255191228299963 -4.027679979748102 4.278412571557161
+  orientation -0.21711207651974723 0.09061933531188444 0.9719313156272493 2.3708368972926155
+  position 3.1872049460812666 -3.0581726858576066 2.914062366621553
 }
 TexturedBackground {
 }
@@ -60,13 +60,16 @@ Robot {
   children [
     DEF ARM_AXIS1_TRANSL SliderJoint {
       jointParameters JointParameters {
+        minStop -0.2
+        staticFriction 50
       }
       device [
         LinearMotor {
+          name "arm_axis1_transl"
         }
       ]
       endPoint Solid {
-        translation 0 0 0.225
+        translation 0 0 0.2250000000000001
         children [
           DEF ARM_AXIS1_SHAPE Shape {
             appearance PBRAppearance {
@@ -80,14 +83,18 @@ Robot {
           }
           DEF ARM_AXIS2_ROT HingeJoint {
             jointParameters HingeJointParameters {
+              axis 0 0 1
+              anchor 0.025 0 0.12
+              minStop -1.57
+              maxStop 1.57
             }
             device [
               RotationalMotor {
+                name "arm_axis2_rot"
               }
             ]
             endPoint Solid {
-              translation 0.025 0 0.13
-              rotation 1 0 0 0
+              translation 0.025 3.46945e-18 0.12
               children [
                 DEF ARM_HINGE_SHAPE Shape {
                   appearance PBRAppearance {
@@ -101,9 +108,13 @@ Robot {
                 }
                 DEF ARM_AXIS3_TRANSL SliderJoint {
                   jointParameters JointParameters {
+                    axis 1 0 0
+                    minStop -0.1
+                    staticFriction 50
                   }
                   device [
                     LinearMotor {
+                      name "arm_axis3_transl"
                     }
                   ]
                   endPoint Solid {
@@ -121,9 +132,13 @@ Robot {
                       }
                       DEF ARM_AXIS4_ROT HingeJoint {
                         jointParameters HingeJointParameters {
+                          anchor 0.075 0 0
+                          minStop -1.57
+                          maxStop 1.57
                         }
                         device [
                           RotationalMotor {
+                            name "arm_axis4_rot"
                           }
                         ]
                         endPoint Solid {
@@ -146,14 +161,19 @@ Robot {
                                 }
                                 DEF ARM_AXIS5_ROT HingeJoint {
                                   jointParameters HingeJointParameters {
+                                    axis 0 1 0
+                                    anchor 0.05 0 0
+                                    minStop -1.57
+                                    maxStop 1.57
                                   }
                                   device [
                                     RotationalMotor {
+                                      name "arm_axis5_rot"
                                     }
                                   ]
                                   endPoint Solid {
-                                    translation 0.05 0 0
-                                    rotation 1 0 0 0
+                                    translation 0.05000000000000003 0 0
+                                    rotation 0 1 0 0
                                     children [
                                       USE ARM_HINGE_SHAPE
                                       DEF ARM_LINK2 Solid {
@@ -399,7 +419,7 @@ Robot {
   boundingObject USE BODY
   physics Physics {
   }
-  controller "six_wheeled_collision_avoidance"
+  controller "arm_sweep"
 }
 WoodenBox {
   translation 0.915431 0.747779 0.25
