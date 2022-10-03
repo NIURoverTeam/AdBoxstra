@@ -13,6 +13,9 @@ setup(
         ('share/' + package_name, ['package.xml']),
         #('share/' + package_name, ['launch/launch_drive_control.py']),
         ('share/' + package_name, glob('launch/*.py')), # include all launch files
+        ('share/' + package_name, glob('resource/*.urdf')), # include all webots-related resource files
+        ('share/' + package_name + '/webots_simulation/worlds',    # include desired webots worlds
+            ['adboxtra_2022_simplified.wbt']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -26,6 +29,7 @@ setup(
             'turtle_ad_boxtra = ad_boxtra.turtle_ad_boxtra:main',
             'conversationalist = ad_boxtra.conversationalist:main',
             'drive_control_serial = ad_boxtra.drive_control_serial:main',
+            'my_robot_driver = ad_boxtra.my_robot_driver:main',
         ],
     },
 )
