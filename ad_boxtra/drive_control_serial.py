@@ -6,6 +6,7 @@ from rclpy.node import Node
 from std_msgs.msg import String
 from sensor_msgs.msg import Joy
 from serial import Serial
+import sys
 
 # Create a serial object: Serial(file handle for an arduino, baud rate)
 ser = Serial("/dev/ttyACM0", 9600)
@@ -27,11 +28,11 @@ class Subscriber(Node):
         rightDir = 0x52 if rightPower >= 0 else 0x72 # 'R' or 'r'
 
         # Writes our 4-byte packet over serial
-        ser.write(
-                struct.pack(
+        packet = struct.pack(
                     ">BBBB", leftDir, int(abs(leftPower)), rightDir, int(abs(rightPower))
                     )
-                )
+        ser.write(packet)
+        print('Published to serial: "%s"' % packet)
 
 def main(args=None):
     rclpy.init(args=args)

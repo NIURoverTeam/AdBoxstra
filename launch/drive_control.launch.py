@@ -12,5 +12,7 @@ def generate_launch_description():
             package='ad_boxtra',
             executable='drive_control_serial',
             name='drive_control',
+            output='screen',
+            emulate_tty=True
         )
     ])
