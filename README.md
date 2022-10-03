@@ -2,6 +2,12 @@
 
 The NIU Ad Boxtra integrated ROS2 package
 
+## Rover Data Flow Diagram
+
+This diagram is a WIP draft of our rover's data flow. White elements are stuff that we code, and gray elements are stuff that other subteams (i.e. electrical, science task) code.
+
+![Rover Data Flow Diagram](https://github.com/NIURoverTeam/AdBoxtra/blob/main/adboxtra_data_flow_diagram_2022.drawio.png)
+
 ## Launching the Basic Drive Control Code
 
 On the Arduino:
