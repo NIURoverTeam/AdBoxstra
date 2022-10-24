@@ -21,7 +21,7 @@ def main(args=None):
     rclpy.init(args=args)
     sub = Subscriber()
     print("+----------------------------------------------------------------------------------+")
-    print("|             👋 Hello! My name is Ad Boxtra, the boxy rover from NIU.             |")
+    print("|             👋 Hello! My name is Ex Arca, the boxy rover from NIU.               |")
     print("|                                                                                  |")
     print("|                  ⌚ It is currently", datetime.datetime.now(),"                  |")
     print("|                                                                                  |")
