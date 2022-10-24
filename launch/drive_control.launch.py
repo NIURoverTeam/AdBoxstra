@@ -9,7 +9,7 @@ def generate_launch_description():
             name='joy'
         ),
         Node(
-            package='ad_boxtra',
+            package='ex_arca',
             executable='drive_control_serial',
             name='drive_control',
             output='screen',

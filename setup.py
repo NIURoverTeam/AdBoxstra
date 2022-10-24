@@ -1,7 +1,7 @@
 from setuptools import setup
 from glob import glob
 
-package_name = 'ad_boxtra'
+package_name = 'ex_arca'
 
 setup(
     name=package_name,
@@ -16,16 +16,16 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='luckierdodge',
-    maintainer_email='ryandlewis.rl@gmail.com',
-    description="ROS 2 Package to drive the NIU Mars Rover Team's Ad Boxtra platform.",
+    maintainer='niurover',
+    maintainer_email='niurover@gmail.com',
+    description="ROS 2 Package to drive the NIU Mars Rover Team's Ex Arca platform.",
     license='MIT License',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'turtle_ad_boxtra = ad_boxtra.turtle_ad_boxtra:main',
-            'conversationalist = ad_boxtra.conversationalist:main',
-            'drive_control_serial = ad_boxtra.drive_control_serial:main',
+            'turtle_ex_arca = ex_arca.turtle_ex_arca:main',
+            'conversationalist = ex_arca.conversationalist:main',
+            'drive_control_serial = ex_arca.drive_control_serial:main',
         ],
     },
 )
